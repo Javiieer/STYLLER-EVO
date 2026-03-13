@@ -1,0 +1,46 @@
+# Visual Studio
+/vc17/.vs
+/vc17/TheOTXServer
+*.db
+*.opendb
+*.suo
+*.user
+*.pdb
+
+# vcpkg
+/vcpkg_installed
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.o
+theotxserver
+TheOTXServer.exe
+
+# Object files
+/src/objects/
+objects/
+
+# Logs
+*.log
+/logs/*.log
+/data/logs/
+output.txt
+error.txt
+restart.log
+
+# Database
+*.db-shm
+*.db-wal
+
+# Temporal/Cache
+.vs/
+.vscode/
+*.cache
+
+# Config personal (opcional, quita si quieres subir tu config)
+# config.lua
+
+# Cliente (opcional, generalmente no se sube)
+# /Cliente/
