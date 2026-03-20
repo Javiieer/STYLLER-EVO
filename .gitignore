@@ -6,9 +6,26 @@
 *.suo
 *.user
 *.pdb
+*.sln
+*.vcxproj*
+*.VC.db
+*.VC.opendb
+
+# CMake
+build/
+cmake-build-*/
+out/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+*.cmake.in
+CTestTestfile.cmake
+_deps/
 
 # vcpkg
 /vcpkg_installed
+.vcpkg-root
 
 # Compiled binaries
 *.exe

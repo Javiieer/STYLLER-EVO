@@ -1,34 +1,50 @@
 cmake_minimum_required(VERSION 3.16)
-project(otx-styller VERSION 1.0.0)
+project(otx-styller VERSION 1.0.0 LANGUAGES CXX)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Add cmake modules path
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
 # Output binary name
 set(EXECUTABLE_NAME "theotxserver")
+
+# Build type
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "RelWithDebInfo" "MinSizeRel")
+endif()
 
 # Compiler flags
 if(MSVC)
     # Windows / Visual Studio
-    add_compile_options(/W3 /MP /bigobj)
-    add_compile_definitions(_WIN32_WINNT=0x0601)
+    add_compile_options(
+        /W3         # Warning level 3
+        /MP         # Multi-processor compilation
+        /bigobj     # Big object files
+        /EHsc       # Exception handling
+    )
+    add_compile_definitions(_WIN32_WINNT=0x0601 _CRT_SECURE_NO_WARNINGS)
 else()
     # Linux / GCC / Clang
     add_compile_options(
         -pipe
         -Wall
         -Wno-maybe-uninitialized
-        -march=native
-        -mtune=native
         -pthread
         -fno-strict-aliasing
     )
     
     # Optimization flags for release
     if(CMAKE_BUILD_TYPE MATCHES Release)
-        add_compile_options(-Ofast)
+        add_compile_options(
+            -O3
+            -march=native
+            -mtune=native
+        )
     endif()
 endif()
 
